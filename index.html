@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voronoi Stippling</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+    <body>
+        <header>
+            <div class = 'superiorbox'>
+                <div class = 'title'>
+                    <p>Weighted Voronoi Stippling</p>
+                </div>
+                <div style="flex: 1"></div>
+                <div class="subtitle">
+                    <a href="https://github.com/viniciusgma/Weighted-Voronoi-Stippling" target="_blank" class="github-button">
+                        GitHub Repository
+                    </a>
+                </div>    
+            </div>
+        </header>
+
+        <main>
+            <div class="textblock">
+                <p>
+                    The idea of this website is to create stipple drawings—images 
+                    composed of small dots that represent shading, textures, and patterns using
+                    a technique called <strong>weighted Voronoi stippling</strong>.
+                </p>
+            </div>
+    
+            <div class="buttons">
+                <div>
+                    <label for="npoints">
+                        Number of points:
+                    </label>
+                    <input type="number" id="npoints" accept="image/*" value=2000 required>
+                </div>
+                <div>
+                    <label for="iter">
+                        Number of iterations:
+                    </label>
+                    <input type="number" id="iter" accept="image/*" value=15>
+                </div>
+                <div>
+                    <div id="config-files">
+                        <label for="upload" id="upload-label" class="custom-file-upload">
+                            Select file
+                        </label>
+                        <input type="file" id="upload">
+                        <button id="cancel-btn" class="custom-file-upload" type="button" disabled>Cancel</button>
+                    </div>
+                </div>
+                <div id="visual-feedback">
+                    <div id="loading"></div>
+                    <div id="visulize-iterations"></div>
+                </div>
+            </div>
+    
+            <div class="image-container">
+                <div class="image-wrapper">
+                    <img id="original-image" src="#" alt="Original Image" style="display: none;">
+                </div>
+                <div class="image-wrapper">
+                    <canvas id="canvas" class="img"></canvas>
+                </div>
+            </div>
+    
+            <input type="range" id="zoom-slider" min="0.1" max="2" value="1" step="0.1">
+    
+            <button id="download" class="custom-file-upload">Download image</button>
+    
+            <div class="textblock">
+                <p> Slide the slider to change the zoom </p>
+            </div>
+    
+            <div class="textblock">
+                <p>
+                     <strong>Weighted Voronoi stippling </strong>is a technique in computer graphics used to create stipple drawing/images
+                     composed of small dots that represent shading, textures, and patterns. Unlike traditional Voronoi diagrams, 
+                     which divide space into regions based on proximity to seed points, weighted Voronoi diagrams assign weights 
+                     to each point, affecting the position of the centroids within each region. The algorithm works by adjusting 
+                     seed points—dots sampled around the image's darker pixels—and "relaxing" them, or, gradually moving them toward 
+                     their weighted centroids. In this case, the weight corresponds to the darkness of the pixel.
+                </p>
+                <p>
+                    Many choices can be made about the algorithm implementation, mostly because working with images may be tricky:
+                    the are loads os pixels, and most of the time, brute-force algorithms are not an option. A good way to deal with this
+                    is to use algorithms that give us good <strong>approximation</strong>. And we have some options:
+                </p>
+                <h3>
+                    Jump flooding algorithm (JFA)
+                </h3>
+                <p>
+                    The <strong>Jump flooding algorithm</strong> starts with an initial grid of seed points and iteratively propagates 
+                    the influence of each seed across the grid. In each step, the algorithm "jumps" over increasingly larger distances 
+                    to update the closest seed for each pixel, gradually refining the diagram. The complexity of the algorithm is O(n^2log(n)). For more details, take a look at <a href="https://en.wikipedia.org/wiki/Jump_flooding_algorithm" target="_blank">Jump Flooding Algorithm</a>.
+                </p>
+                <img src="scripts\Images_and_gifs\JFA_com_200_geradores.jpg" class = 'Images'>
+    
+            </div>
+            
+            <div class = 'textblock'>
+    
+                <h3>
+                    Jump flooding algorithm GPU (JFA GPU)
+                </h3>
+                <p>
+                    The same algorithm, but using the GPU. The complexity here is O(log(n))
+                </p>
+                <img src="scripts\Images_and_gifs\JFA_GPU_com_200_geradores.jpg" class = 'Images'>
+                
+    
+            </div>
+    
+            <div class = 'textblock'>
+    
+                <h3>
+                    Ball Algorithm
+                </h3>
+                <p>
+                    The <strong>Ball Algorithm </strong>begins by initializing a set of seed points and expanding spherical 
+                    regions around them. Each seed grows outward uniformly until it encounters another 
+                    expanding region, forming the boundaries of the Voronoi cells. This process continues 
+                    iteratively, refining the diagram as regions interact and adjust. The algorithm is 
+                    particularly useful for approximating Voronoi diagrams and centroid-based calculations. 
+                    Its complexity is O(nlog(n)). For more details, take a look at the Ball Algorithm.                
+                </p>
+                <img src="scripts\Images_and_gifs\Ball_com_200_geradores.jpg" class = 'Images'>
+
+    
+            </div>
+
+            <div class = 'textblock'>
+            
+                <h2>
+                    Comparing Algorithms
+                </h2>
+                <p>
+                    Here, we present two comparisons between some algorithms, including those we 
+                    discussed. We refer to the brute-force algorithm as "naive.". For a reading about
+                    the<a href="https://dehne73176131.wordpress.com/wp-content/uploads/2017/12/2-38.pdf" target="_blank">Wavefront Algorithm</a>.
+
+                </p>
+                <div class = 'Images'>
+                <img src="scripts\Images_and_gifs\Comparação_do_Tempo_dos_Métodos.jpg" class = 'Images2'>
+                <img src="scripts\Images_and_gifs\Comparação_do_erro.jpg" class = 'Images2'>
+                </div>
+            </div>
+
+            <div class = 'textblock'>
+                <p class="Authors"> 
+                    Authors:
+                </p>
+                <p class="Authors">
+                    Davi Guimarães, Universidade Federal Fluminense; Leonardo Nanci, Universidade Federal Fluminense;
+                    Letícia Aleixo, Impatech; Lucas Gonçalves, Impatech; Marcos Melo, Impatech; Paulo de Almeida, Universidad de Buenos Aires;
+                    Richard Elias, Impatech; Tainá Drummond, Impatech; Tomaz Cavalcante, Impatech;
+                     Vinicius Maciel, Impatech;
+                </p>
+            </div>
+
+        </main>
+
+        <script src="scripts/slider.js"></script>
+        <script src="scripts/parseImg.js"></script>
+        <script src="scripts/sampleImg.js"></script>
+        <script src="scripts/jumpFlooding.js"></script>
+        <script src="scripts/jumpFloodingGPU.js"></script>
+        <script src="scripts/centroids.js"></script>
+        <script src="scripts/script.js"></script>
+    </body>
+</html>
