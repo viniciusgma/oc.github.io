@@ -214,3 +214,15 @@ main {
     margin-bottom: 5px; 
     font-weight: bold;  
 }
+
+.image-pair {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    gap: 10px;
+}
+
+.side-by-side {
+    max-width: 300px; 
+    height: auto;
+}

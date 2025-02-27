@@ -98,8 +98,11 @@
                     the influence of each seed across the grid. In each step, the algorithm "jumps" over increasingly larger distances 
                     to update the closest seed for each pixel, gradually refining the diagram. The complexity of the algorithm is O(n^2log(n)). For more details, take a look at <a href="https://en.wikipedia.org/wiki/Jump_flooding_algorithm" target="_blank">Jump Flooding Algorithm</a>.
                 </p>
-                <img src="scripts\Images_and_gifs\JFA_com_200_geradores.jpg" class = 'Images'>
-    
+                <div class="image-pair">
+                    <img src="scripts/Images_and_gifs/naive.png" class="side-by-side" alt="Naive1">
+                    <img src="scripts/Images_and_gifs/JFA_com_200_geradores.jpg" class="side-by-side" alt="New Image">
+                </div>
+
             </div>
             
             <div class = 'textblock'>
@@ -110,7 +113,10 @@
                 <p>
                     The same algorithm, but using the GPU. The complexity here is O(log(n))
                 </p>
-                <img src="scripts\Images_and_gifs\JFA_GPU_com_200_geradores.jpg" class = 'Images'>
+                <div class="image-pair">
+                    <img src="scripts/Images_and_gifs/naive.png" class="side-by-side" alt="Naive2">
+                    <img src="scripts/Images_and_gifs/JFA_GPU_com_200_geradores.jpg" class="side-by-side" alt="New Image">
+                </div>
                 
     
             </div>
@@ -128,10 +134,12 @@
                     particularly useful for approximating Voronoi diagrams and centroid-based calculations. 
                     Its complexity is O(nlog(n)). For more details, take a look at the Ball Algorithm.                
                 </p>
-                <img src="scripts\Images_and_gifs\Ball_com_200_geradores.jpg" class = 'Images'>
-
+                <div class="image-pair">
+                    <img src="scripts/Images_and_gifs/naive.png" class="side-by-side" alt="Naive3">
+                    <img src="scripts/Images_and_gifs/Ball_com_200_geradores.jpg" class="side-by-side" alt="New Image">
+                </div>
     
-            </div>
+            </div>  
 
             <div class = 'textblock'>
             
